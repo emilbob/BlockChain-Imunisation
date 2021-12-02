@@ -114,7 +114,9 @@ contract Vcc is ERC20, ReentrancyGuard {
       return population;
     }
 
-    function getperson(uint _index)public view returns(address, string memory, Vcc.personState ,uint , uint ){
+    
+
+    function getPerson(uint _index)public view returns(address, string memory, Vcc.personState ,uint , uint ){
 
       Person memory person = people[_index];
 

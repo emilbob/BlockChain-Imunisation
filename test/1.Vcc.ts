@@ -24,18 +24,17 @@ describe("Vcc", () => {
 
     expect(vcc.address).to.properAddress;
   });
-  it.only("Should add person to registry and increment person index", async () => {
-    await vcc.register(signers[1].address, "persona 1", "vaccinated");
+  it.skip("Should add person to registry and increment person index", async () => {
+    await vcc.register(signers[1].address, "persona 1", 1);
+    await vcc.register(signers[2].address, "persona 2", 1);
 
-    await expect(await vcc.getIndex()).to.eq(1);
+    await expect(await vcc.getIndex()).to.eq(2);
   });
 
   it.skip("Should  vaccinate and mint on persons   balance", async () => {
-    expect(await vcc.balanceOf(signers[1].address)).to.eq(0);
+    let person = await vcc.getPerson(1);
 
-    let index = await vcc.getIndex();
-
-    await vcc.vaccinate(index);
+    await vcc.vaccinate(1);
     //expect(await vcc.balanceOf(signers[1].address)).to.equal(2000000);
   });
 });
